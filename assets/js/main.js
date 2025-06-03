@@ -1,10 +1,3 @@
-function _convert(v, from, to){
-    return math.unit(parseFloat(v), from).toNumber(to);
-}
-function _foreach(arr, fn) {
-    return ko.utils.arrayMap(arr, fn)
-}
-
 class ViewModel {
   constructor() {
     var self = this;
