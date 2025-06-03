@@ -22,7 +22,7 @@ js:
                 <table class="table table-sm table-striped">
                     <thead>
                     <tr>
-                        <th>#</th>
+                        <th class="text-center">#</th>
                         <th>Ratio</th>
                         <th>Converter Slip</th>
                         <th></th>
@@ -30,7 +30,7 @@ js:
                     </thead>
                     <tbody data-bind="foreach: gearRatios">
                     <tr>
-                        <td class="align-middle fw-bold" data-bind="text: $index() + 1"></td>
+                        <td class="text-center align-middle fw-bold" data-bind="text: $index() + 1"></td>
                         <td>
                             {% include snippets/unit_input.html step=0.01 val="ratio" units="':1'" class="input-sm" %}
                         </td>
