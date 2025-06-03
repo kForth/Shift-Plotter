@@ -1,0 +1,5 @@
+<select class="input-group-text btn-secondary" data-bind="value: {{ include.val }}">
+    {% for opt in include.options %}
+    <option value="{{ opt.value }}" {%- if opt.default %} selected{% endif %}>{{ opt.label }}</option>
+    {% endfor %}
+</select>
