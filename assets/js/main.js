@@ -31,7 +31,6 @@ class ViewModel {
       e => ({ratio: ko.observable(e), slip: ko.observable(0)})
     ));
     self.finalDriveRatio = ko.observable(3.27); // n:1
-    self.converterSlip = ko.observable(0); // %
     self.shiftRpm = ko.observable(6000); // RPM
     self.tireDiameterRaw = ko.observable(27.9);
     self.tireDiameterUnit = ko.observable("in");
