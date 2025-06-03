@@ -19,3 +19,5 @@ function _convert(v, from, to){
 function _foreach(arr, fn) {
     return ko.utils.arrayMap(arr, fn)
 }
+
+const ORDINAL_SUFFIXES = {1: "st", 2: "nd", 3: "rd"}
