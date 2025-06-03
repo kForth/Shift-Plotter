@@ -12,12 +12,23 @@ js:
     <div class="p-2 col-lg-7 col-md-9 col-sm-12 h100 scrollable">
         <div class="p-4 mb-3 bg-light rounded-3">
             <h4 class="mb-2">Settings</h4>
+
             <label>Tire Diameter:</label>
             {% include snippets/unit_input.html min=1 val="tireDiameterRaw" units="tireDiameterUnit" options=site.data.units.linear %}
+
+            <label>Shift RPM:</label>
+            <input class="form-control" type="number" min="100" step="100" data-bind="value: shiftRpm" />
+
+            <label>Converter Slip:</label>
+            <input class="form-control" type="number" min="0" step="1" data-bind="value: converterSlip" />
+
             <div class="mt-2">
                 <label for="mapSelect">Transmission:</label>
                 <select class="form-control form-control-sm" data-bind="value: transm, options: transmList, optionsText: 'title'"></select>
             </div>
+
+            <label>Final Drive Ratio:</label>
+            {% include snippets/unit_input.html step=0.01 val="finalDriveRatio" units="':1'" %}
         </div>
     </div>
 
