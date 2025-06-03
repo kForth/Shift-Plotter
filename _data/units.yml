@@ -64,3 +64,12 @@ frequency:
     label: RPM
   - value: Hz
     label: Hz
+velocity:
+  - value: km/h
+    label: Km/h
+  - value: m/s
+    label: m/s
+  - value: mi/h
+    label: Mph
+  - value: ft/s
+    label: Fps
