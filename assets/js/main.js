@@ -48,7 +48,7 @@ class ViewModel {
         }];
         for (let i = 1; i < transm.gears; i++) {
           data.push({
-            label: `Gear ${i}`,
+            label: `Gear ${i + 1}`,
             data: [
               { x: self.calcSpeed(shiftRpm, transm.ratios[i-1] * finalDrive), y: shiftRpm * (transm.ratios[i] / transm.ratios[i-1]) },
               { x: self.calcSpeed(shiftRpm, transm.ratios[i] * finalDrive), y: shiftRpm},
