@@ -15,7 +15,40 @@ js:
             <h4 class="mb-2">Settings</h4>
             <div class="mt-2">
                 <label for="mapSelect">Transmission:</label>
-                <select class="form-control form-control-sm" data-bind="value: transm, options: transmList, optionsText: 'title'"></select>
+                <select class="form-control form-control-sm" data-bind="value: selectedTransm, options: transmList, optionsText: 'title'"></select>
+            </div>
+            <div class="mt-2">
+                <label for="mapSelect">Gear Ratios:</label>
+                <table class="table table-sm table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Ratio</th>
+                        <th>Converter Slip</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody data-bind="foreach: gearRatios">
+                    <tr>
+                        <td data-bind="text: $index() + 1"></td>
+                        <td>
+                            {% include snippets/unit_input.html step=0.01 val="ratio" units="':1'" class="input-sm" %}
+                        </td>
+                        <td>
+                            {% include snippets/unit_input.html min=0 max=99 step=1 val="slip" units="'%'" %}
+                        </td>
+                        <td>
+                            <div class="btn-group w-100">
+                                <button class="btn btn-narrow btn-primary" data-bind="click: $root.moveGearRowUp, attr: { disabled: $index() == 0 }"><i class="bi bi-arrow-up"></i></button>
+                                <button class="btn btn-narrow btn-primary" data-bind="click: $root.moveGearRowDown, attr: { disabled: $index() == $root.gearRatios().length - 1 }"><i class="bi bi-arrow-down"></i></button>
+                                <button class="btn btn-narrow btn-success" data-bind="click: $root.insertGearRowAbove"><i class="bi bi-box-arrow-in-up"></i></button>
+                                <button class="btn btn-narrow btn-success" data-bind="click: $root.insertGearRowBelow"><i class="bi bi-box-arrow-in-down"></i></button>
+                                <button class="btn btn-narrow btn-danger" data-bind="click: $root.removeGearRow"><i class="bi bi-trash-fill"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="mt-2">
                 <label>Final Drive Ratio:</label>
