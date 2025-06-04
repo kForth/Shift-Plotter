@@ -10,12 +10,12 @@ js:
   - /assets/js/main.js
 ---
 <div class="container-fluid p-2 m-0 row h100">
-    <div class="p-2 col-lg-7 col-md-9 col-sm-12 h100 scrollable">
+    <div class="p-2 col-lg-4 col-md-6 col-sm-12 h100 scrollable" data-bind="foreach: { data: $root.instances, as: 'inst' }">
         <div class="p-4 mb-3 rounded-3">
             <h4 class="mb-2">Settings</h4>
             <div class="mt-2">
                 <label for="mapSelect">Transmission:</label>
-                <select class="form-control form-control-sm" data-bind="value: selectedTransm, options: transmList, optionsText: 'title'"></select>
+                <select class="form-control form-control-sm" data-bind="value: inst.selectedTransm, options: $root.transmList, optionsText: 'title'"></select>
             </div>
             <div class="mt-2">
                 <label for="mapSelect">Gear Ratios:</label>
@@ -28,22 +28,22 @@ js:
                         <th></th>
                     </tr>
                     </thead>
-                    <tbody data-bind="foreach: gearRatios">
+                    <tbody data-bind="foreach: inst.gearRatios">
                     <tr>
                         <td class="text-center align-middle fw-bold" data-bind="text: $index() + 1"></td>
                         <td>
-                            {% include snippets/unit_input.html step=0.01 val="ratio" units="':1'" class="input-sm" %}
+                            {% include snippets/unit_input.html step=0.01 val="$data.ratio" units="':1'" class="input-sm" %}
                         </td>
                         <td>
-                            {% include snippets/unit_input.html min=0 max=99 step=1 val="slip" units="'%'" %}
+                            {% include snippets/unit_input.html min=0 max=99 step=1 val="$data.slip" units="'%'" %}
                         </td>
                         <td>
                             <div class="btn-group w-100">
-                                <button class="btn btn-narrow btn-primary" data-bind="click: $root.moveGearRowUp, attr: { disabled: $index() == 0 }"><i class="bi bi-arrow-up"></i></button>
-                                <button class="btn btn-narrow btn-primary" data-bind="click: $root.moveGearRowDown, attr: { disabled: $index() == $root.gearRatios().length - 1 }"><i class="bi bi-arrow-down"></i></button>
-                                <button class="btn btn-narrow btn-success" data-bind="click: $root.insertGearRowAbove"><i class="bi bi-box-arrow-in-up"></i></button>
-                                <button class="btn btn-narrow btn-success" data-bind="click: $root.insertGearRowBelow"><i class="bi bi-box-arrow-in-down"></i></button>
-                                <button class="btn btn-narrow btn-danger" data-bind="click: $root.removeGearRow"><i class="bi bi-trash-fill"></i></button>
+                                <button class="btn btn-narrow btn-primary" data-bind="click: inst.moveGearRowUp, attr: { disabled: $index() == 0 }"><i class="bi bi-arrow-up"></i></button>
+                                <button class="btn btn-narrow btn-primary" data-bind="click: inst.moveGearRowDown, attr: { disabled: $index() == inst.gearRatios().length - 1 }"><i class="bi bi-arrow-down"></i></button>
+                                <button class="btn btn-narrow btn-success" data-bind="click: inst.insertGearRowAbove"><i class="bi bi-box-arrow-in-up"></i></button>
+                                <button class="btn btn-narrow btn-success" data-bind="click: inst.insertGearRowBelow"><i class="bi bi-box-arrow-in-down"></i></button>
+                                <button class="btn btn-narrow btn-danger" data-bind="click: inst.removeGearRow"><i class="bi bi-trash-fill"></i></button>
                             </div>
                         </td>
                     </tr>
@@ -52,27 +52,27 @@ js:
             </div>
             <div class="mt-2">
                 <label>Final Drive Ratio:</label>
-                {% include snippets/unit_input.html step=0.01 val="finalDriveRatio" units="':1'" %}
+                {% include snippets/unit_input.html step=0.01 val="inst.finalDriveRatio" units="':1'" %}
             </div>
             <div class="mt-2">
                 <label>Tire Diameter:</label>
-                {% include snippets/unit_input.html min=1 val="tireDiameterRaw" units="tireDiameterUnit" options=site.data.units.linear %}
+                {% include snippets/unit_input.html min=1 val="inst.tireDiameterRaw" units="inst.tireDiameterUnit" options=site.data.units.linear %}
             </div>
             <div class="mt-2">
                 <label>Shift Point:</label>
-                {% include snippets/unit_input.html min=100 step=100 val="shiftRpm" units="'RPM'" %}
+                {% include snippets/unit_input.html min=100 step=100 val="inst.shiftRpm" units="'RPM'" %}
             </div>
         </div>
     </div>
 
-    <div class="p-2 col-lg-5 col-md-3 col-sm-12 h100 scrollable">
+    <div class="p-2 col-lg-8 col-md-6 col-sm-12 h100 scrollable">
         <h4 class="mt-3 mb-2">Shift Point Plot</h4>
         <div class="chart-holder mb-3" id="map-collapse">
-            <canvas class="chart-canvas" data-bind="chart: shiftPointsChart"></canvas>
+            <canvas class="chart-canvas" data-bind="chart: $root.shiftPointsChart"></canvas>
         </div>
         <div class="mt-2">
             <label for="mapSelect">Speed Unit:</label>
-            {% include snippets/unit_select.html val="chartSpeedUnit" options=site.data.units.velocity %}
+            {% include snippets/unit_select.html val="$root.chartSpeedUnit" options=site.data.units.velocity %}
         </div>
     </div>
 </div>
