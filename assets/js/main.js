@@ -1,3 +1,5 @@
+const POINT_STYLES = ["circle", "triangle", "star", "rect", "rectRot", "cross", "crossRot", "dash", "line", "rectRounded"];
+
 class TransmissionModel {
   constructor(parent, base) {
     var self = this;
@@ -136,7 +138,7 @@ class TransmissionModel {
           backgroundColor: `hsl(${lineHue}, 100%, 70%)`,
           borderColor: `hsl(${lineHue}, 90%, 60%)`,
           borderWidth: 2,
-          pointStyle: ["circle", "triangle", "star", "rect", "rectRot", "cross", "crossRot", "dash", "line", "rectRounded"][index % 8],
+          pointStyle: POINT_STYLES[index % 8],
         })
         lastRatio = ratio;
         lastSpeed = endSpeed;
@@ -188,5 +190,4 @@ class ViewModel {
   }
 }
 
-const model = new ViewModel();
-ko.applyBindings(model);
+ko.applyBindings(new ViewModel());
